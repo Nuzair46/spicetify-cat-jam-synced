@@ -1,41 +1,41 @@
 !(async function () {
   for (; !Spicetify.React || !Spicetify.ReactDOM; )
     await new Promise((e) => setTimeout(e, 10));
-  var l, o, d, c, u, m, p, e, t, a, r, i, f, n;
-  (o = Object.create),
-    (d = Object.defineProperty),
-    (c = Object.getOwnPropertyDescriptor),
-    (u = Object.getOwnPropertyNames),
-    (m = Object.getPrototypeOf),
-    (p = Object.prototype.hasOwnProperty),
+  var p, s, l, d, c, u, m, e, t, a, o, n, f, y, i;
+  (s = Object.create),
+    (l = Object.defineProperty),
+    (d = Object.getOwnPropertyDescriptor),
+    (c = Object.getOwnPropertyNames),
+    (u = Object.getPrototypeOf),
+    (m = Object.prototype.hasOwnProperty),
     (a = (e = (e, t) =>
       function () {
         return (
-          t || (0, e[u(e)[0]])((t = { exports: {} }).exports, t), t.exports
+          t || (0, e[c(e)[0]])((t = { exports: {} }).exports, t), t.exports
         );
       })({
       "external-global-plugin:react-dom"(e, t) {
         t.exports = Spicetify.ReactDOM;
       },
     })),
-    (r = (t = (e, t, a) => {
-      a = null != e ? o(m(e)) : {};
-      var i =
+    (o = (t = (e, t, a) => {
+      a = null != e ? s(u(e)) : {};
+      var n =
           !t && e && e.__esModule
             ? a
-            : d(a, "default", { value: e, enumerable: !0 }),
-        n = e,
-        s = void 0,
-        r = void 0;
-      if ((n && "object" == typeof n) || "function" == typeof n)
-        for (let e of u(n))
-          p.call(i, e) ||
-            e === s ||
-            d(i, e, {
-              get: () => n[e],
-              enumerable: !(r = c(n, e)) || r.enumerable,
+            : l(a, "default", { value: e, enumerable: !0 }),
+        i = e,
+        r = void 0,
+        o = void 0;
+      if ((i && "object" == typeof i) || "function" == typeof i)
+        for (let e of c(i))
+          m.call(n, e) ||
+            e === r ||
+            l(n, e, {
+              get: () => i[e],
+              enumerable: !(o = d(i, e)) || o.enumerable,
             });
-      return i;
+      return n;
     })(
       e({
         "external-global-plugin:react"(e, t) {
@@ -43,7 +43,7 @@
         },
       })()
     )),
-    (i = t(a())),
+    (n = t(a())),
     (f = new (class {
       constructor(e, t, a = {}) {
         (this.name = e),
@@ -100,46 +100,46 @@
               ? console.log(t)
               : (((t = document.createElement("div")).id = this.settingsId),
                 e.appendChild(t)),
-              i.default.render(
-                r.default.createElement(this.FieldsContainer, null),
+              n.default.render(
+                o.default.createElement(this.FieldsContainer, null),
                 t
               );
           }),
-          (this.addButton = (e, t, a, i, n) => {
+          (this.addButton = (e, t, a, n, i) => {
             this.settingsFields[e] = {
               type: "button",
               description: t,
               value: a,
-              events: { onClick: i, ...n },
+              events: { onClick: n, ...i },
             };
           }),
-          (this.addInput = (e, t, a, i, n, s) => {
+          (this.addInput = (e, t, a, n, i, r) => {
             this.settingsFields[e] = {
               type: "input",
               description: t,
               defaultValue: a,
-              inputType: n,
-              events: { onChange: i, ...s },
+              inputType: i,
+              events: { onChange: n, ...r },
             };
           }),
           (this.addHidden = (e, t) => {
             this.settingsFields[e] = { type: "hidden", defaultValue: t };
           }),
-          (this.addToggle = (e, t, a, i, n) => {
+          (this.addToggle = (e, t, a, n, i) => {
             this.settingsFields[e] = {
               type: "toggle",
               description: t,
               defaultValue: a,
-              events: { onChange: i, ...n },
+              events: { onChange: n, ...i },
             };
           }),
-          (this.addDropDown = (e, t, a, i, n, s) => {
+          (this.addDropDown = (e, t, a, n, i, r) => {
             this.settingsFields[e] = {
               type: "dropdown",
               description: t,
-              defaultValue: a[i],
+              defaultValue: a[n],
               options: a,
-              events: { onSelect: n, ...s },
+              events: { onSelect: i, ...r },
             };
           }),
           (this.getFieldValue = (e) =>
@@ -153,19 +153,19 @@
             );
           }),
           (this.FieldsContainer = () => {
-            var [e, t] = (0, r.useState)(0);
+            var [e, t] = (0, o.useState)(0);
             return (
               (this.setRerender = t),
-              r.default.createElement(
+              o.default.createElement(
                 "div",
                 { className: "x-settings-section", key: e },
-                r.default.createElement(
+                o.default.createElement(
                   "h2",
                   { className: "TypeElement-cello-textBase-type" },
                   this.name
                 ),
                 Object.entries(this.settingsFields).map(([e, t]) =>
-                  r.default.createElement(this.Field, { nameId: e, field: t })
+                  o.default.createElement(this.Field, { nameId: e, field: t })
                 )
               )
             );
@@ -180,18 +180,18 @@
                   : this.getFieldValue(a.nameId)),
               "hidden" === a.field.type)
             )
-              return r.default.createElement(r.default.Fragment, null);
-            const [i, n] = (0, r.useState)(t),
-              s = (e) => {
-                void 0 !== e && (n(e), this.setFieldValue(a.nameId, e));
+              return o.default.createElement(o.default.Fragment, null);
+            const [n, i] = (0, o.useState)(t),
+              r = (e) => {
+                void 0 !== e && (i(e), this.setFieldValue(a.nameId, e));
               };
-            return r.default.createElement(
+            return o.default.createElement(
               "div",
               { className: "x-settings-row" },
-              r.default.createElement(
+              o.default.createElement(
                 "div",
                 { className: "x-settings-firstColumn" },
-                r.default.createElement(
+                o.default.createElement(
                   "label",
                   {
                     className: "TypeElement-viola-textSubdued-type",
@@ -200,28 +200,28 @@
                   a.field.description || ""
                 )
               ),
-              r.default.createElement(
+              o.default.createElement(
                 "div",
                 { className: "x-settings-secondColumn" },
                 "input" === a.field.type
-                  ? r.default.createElement("input", {
+                  ? o.default.createElement("input", {
                       className: "x-settings-input",
                       id: e,
                       dir: "ltr",
-                      value: i,
+                      value: n,
                       type: a.field.inputType || "text",
                       ...a.field.events,
                       onChange: (e) => {
-                        s(e.currentTarget.value);
+                        r(e.currentTarget.value);
                         var t = a.field.events?.onChange;
                         t && t(e);
                       },
                     })
                   : "button" === a.field.type
-                  ? r.default.createElement(
+                  ? o.default.createElement(
                       "span",
                       null,
-                      r.default.createElement(
+                      o.default.createElement(
                         "button",
                         {
                           id: e,
@@ -229,67 +229,95 @@
                             "Button-sc-y0gtbx-0 Button-small-buttonSecondary-useBrowserDefaultFocusStyle x-settings-button",
                           ...a.field.events,
                           onClick: (e) => {
-                            s();
+                            r();
                             var t = a.field.events?.onClick;
                             t && t(e);
                           },
                           type: "button",
                         },
-                        i
+                        n
                       )
                     )
                   : "toggle" === a.field.type
-                  ? r.default.createElement(
+                  ? o.default.createElement(
                       "label",
                       { className: "x-settings-secondColumn x-toggle-wrapper" },
-                      r.default.createElement("input", {
+                      o.default.createElement("input", {
                         id: e,
                         className: "x-toggle-input",
                         type: "checkbox",
-                        checked: i,
+                        checked: n,
                         ...a.field.events,
                         onClick: (e) => {
-                          s(e.currentTarget.checked);
+                          r(e.currentTarget.checked);
                           var t = a.field.events?.onClick;
                           t && t(e);
                         },
                       }),
-                      r.default.createElement(
+                      o.default.createElement(
                         "span",
                         { className: "x-toggle-indicatorWrapper" },
-                        r.default.createElement("span", {
+                        o.default.createElement("span", {
                           className: "x-toggle-indicator",
                         })
                       )
                     )
                   : "dropdown" === a.field.type
-                  ? r.default.createElement(
+                  ? o.default.createElement(
                       "select",
                       {
                         className: "main-dropDown-dropDown",
                         id: e,
                         ...a.field.events,
                         onChange: (e) => {
-                          s(a.field.options[e.currentTarget.selectedIndex]);
+                          r(a.field.options[e.currentTarget.selectedIndex]);
                           var t = a.field.events?.onChange;
                           t && t(e);
                         },
                       },
                       a.field.options.map((e, t) =>
-                        r.default.createElement(
+                        o.default.createElement(
                           "option",
-                          { selected: e === i, value: t + 1 },
+                          { selected: e === n, value: t + 1 },
                           e
                         )
                       )
                     )
-                  : r.default.createElement(r.default.Fragment, null)
+                  : o.default.createElement(o.default.Fragment, null)
               )
             );
           });
       }
     })("Cat-Jam Settings", "catjam-settings")),
-    (n = async function () {
+    (y = `
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    #catjam-rgb-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255, 0, 0, 0.5), rgba(0, 255, 0, 0.5), rgba(0, 0, 255, 0.5));
+        background-size: 200% 200%;
+        animation: gradient 5s ease infinite;
+        mix-blend-mode: screen;
+        pointer-events: none;
+        background-blend-mode: multiply;
+        z-index: 2;
+    }
+`),
+    (i = async function () {
       for (
         var e;
         null == (e = null == Spicetify ? void 0 : Spicetify.Player) ||
@@ -300,8 +328,8 @@
       )
         await new Promise((e) => setTimeout(e, 100));
       console.log("[CAT-JAM] Extension loaded.");
-      let i,
-        n =
+      let n,
+        i =
           (f.addInput(
             "catjam-webm-link",
             "Custom webM video URL (Link does not work if no video shows)",
@@ -328,64 +356,63 @@
             "Reload custom values",
             "Save and reload",
             () => {
-              h();
+              b();
             }
           ),
           f.pushSettings(),
-          h(),
+          b(),
           Spicetify.Player.addEventListener("onplaypause", async () => {
             var e = performance.now(),
               t = Spicetify.Player.getProgress();
-            s(e, (n = t));
+            r(e, (i = t));
           }),
           0);
       Spicetify.Player.addEventListener("onprogress", async () => {
         var e = performance.now(),
           t = Spicetify.Player.getProgress();
-        500 <= Math.abs(t - n) && s(e, t), (n = t);
+        500 <= Math.abs(t - i) && r(e, t), (i = t);
       }),
         Spicetify.Player.addEventListener("songchange", async () => {
           var e,
             t = performance.now();
-          n = Spicetify.Player.getProgress();
+          i = Spicetify.Player.getProgress();
           const a = document.getElementById("catjam-webm");
           a
-            ? (i = await g()) && i.beats && 0 < i.beats.length
-              ? ((e = i.beats[0].start),
-                (a.playbackRate = await y(i)),
+            ? (n = await h()) && n.beats && 0 < n.beats.length
+              ? ((e = n.beats[0].start),
+                (a.playbackRate = await g(n)),
                 (t = performance.now() - t),
                 (e = Math.max(0, 1e3 * e - t)),
                 setTimeout(() => {
                   (a.currentTime = 0), a.play();
                 }, e))
-              : ((a.playbackRate = await y(i)), (a.currentTime = 0), a.play())
+              : ((a.playbackRate = await g(n)), (a.currentTime = 0), a.play())
             : console.error("[CAT-JAM] Video element not found.");
         });
     }),
     (async () => {
-      await n();
+      await i();
     })();
-  async function y(e) {
-    let t = Number(f.getFieldValue("catjam-webm-bpm"));
-    var a;
+  async function g(t) {
+    let a = Number(f.getFieldValue("catjam-webm-bpm"));
+    if ((console.log(a), (a = a || 135.48), t && null != t && t.track)) {
+      t = null == (t = null == t ? void 0 : t.track) ? void 0 : t.tempo;
+      let e = 1;
+      return (
+        t && (e = t / a),
+        console.log("[CAT-JAM] Track BPM:", t),
+        console.log("[CAT-JAM] Cat jam synchronized, playback rate set to:", e),
+        e
+      );
+    }
     return (
-      console.log(t),
-      (t = t || 135.48),
-      e && e.track.tempo
-        ? ((a = (e = e.track.tempo) / t),
-          console.log("[CAT-JAM] Track BPM:", e),
-          console.log(
-            "[CAT-JAM] Cat jam synchronized, playback rate set to:",
-            a
-          ),
-          a)
-        : (console.warn(
-            "[CAT-JAM] BPM data not available for this track, cat will not be jamming accurately :("
-          ),
-          1)
+      console.warn(
+        "[CAT-JAM] BPM data not available for this track, cat will not be jamming accurately :("
+      ),
+      1
     );
   }
-  async function g(t = 200, a = 10) {
+  async function h(t = 200, a = 10) {
     try {
       return await Spicetify.getAudioData();
     } catch (e) {
@@ -394,68 +421,83 @@
           return (
             console.log("[CAT-JAM] Retrying to fetch audio data..."),
             await new Promise((e) => setTimeout(e, t)),
-            g(t, a - 1)
+            h(t, a - 1)
           );
       } else console.warn("[CAT-JAM] Error fetching audio data: " + e);
       return null;
     }
   }
-  async function s(e, t) {
+  async function r(e, t) {
     const a = document.getElementById("catjam-webm");
-    var i;
+    var n;
     a
       ? Spicetify.Player.isPlaying()
         ? ((t /= 1e3),
-          l && l.beats
-            ? ((i = l.beats.find((e) => e.start > t))
+          p && p.beats
+            ? ((n = p.beats.find((e) => e.start > t))
                 ? ((e = performance.now() - e),
-                  (i = Math.max(0, 1e3 * (i.start - t) - e)),
+                  (n = Math.max(0, 1e3 * (n.start - t) - e)),
                   setTimeout(() => {
                     (a.currentTime = 0), a.play();
-                  }, i))
+                  }, n))
                 : ((a.currentTime = 0), a.play()),
               console.log("[CAT-JAM] Resynchronized to nearest beat"))
             : ((a.currentTime = 0), a.play()))
         : a.pause()
       : console.error("[CAT-JAM] Video element not found.");
   }
-  async function h() {
+  async function b() {
     try {
       let e = Number(f.getFieldValue("catjam-webm-position-left-size"));
       e = e || 100;
-      var a = `width: ${e}%; max-width: 300px; height: auto; max-height: 100%; position: absolute; bottom: 0; pointer-events: none; z-index: 1;`,
-        i = f.getFieldValue("catjam-webm-position"),
-        n = "Bottom (Player)" === i ? "width: 65px; height: 65px;" : a,
-        s = await (async function (e, t = 50, a = 100) {
-          let i = 0;
-          for (; i < t; ) {
-            var n = document.querySelector(e);
-            if (n) return n;
-            await new Promise((e) => setTimeout(e, a)), i++;
+      var a = `width: ${e}%; max-width: 300px; height: 100%; max-height: 229px; bottom: 0; pointer-events: none; z-index: 1; position: absolute;`,
+        n = f.getFieldValue("catjam-webm-position"),
+        i = "Bottom (Player)" === n ? "width: 65px; height: 65px;" : a,
+        r = await (async function (e, t = 50, a = 100) {
+          let n = 0;
+          for (; n < t; ) {
+            var i = document.querySelector(e);
+            if (i) return i;
+            await new Promise((e) => setTimeout(e, a)), n++;
           }
           throw new Error(`Element ${e} not found after ${t} attempts.`);
         })(
-          "Bottom (Player)" === i
+          "Bottom (Player)" === n
             ? ".main-nowPlayingBar-right"
             : ".main-yourLibraryX-libraryItemContainer"
         ),
-        r = document.getElementById("catjam-webm");
-      r && r.remove();
+        o = document.getElementById("catjam-webm"),
+        s = (o && o.remove(), document.getElementById("catjam-webm-container")),
+        l = (s && s.remove(), document.getElementById("catjam-rgb-overlay"));
+      l && l.remove();
       let t = String(f.getFieldValue("catjam-webm-link"));
       t =
         t ||
         "https://github.com/BlafKing/spicetify-cat-jam-synced/raw/main/src/resources/catjam.webm";
-      var o = document.createElement("video");
-      o.setAttribute("loop", "true"),
-        o.setAttribute("autoplay", "true"),
-        o.setAttribute("muted", "true"),
-        o.setAttribute("style", n),
-        (o.src = t),
-        (o.id = "catjam-webm"),
-        (l = await g()),
-        (o.playbackRate = await y(l)),
-        s.firstChild ? s.insertBefore(o, s.firstChild) : s.appendChild(o),
-        Spicetify.Player.isPlaying() ? o.play() : o.pause();
+      var d = document.createElement("div"),
+        c =
+          (d.setAttribute("id", "catjam-webm-container"),
+          d.setAttribute("style", i),
+          document.createElement("style")),
+        u =
+          ((c.textContent = y),
+          document.head.appendChild(c),
+          document.createElement("div")),
+        m =
+          (u.setAttribute("id", "catjam-rgb-overlay"),
+          document.createElement("video"));
+      m.setAttribute("loop", "true"),
+        m.setAttribute("autoplay", "true"),
+        m.setAttribute("muted", "true"),
+        m.setAttribute("style", i),
+        (m.src = t),
+        (m.id = "catjam-webm"),
+        (p = await h()),
+        (m.playbackRate = await g(p)),
+        d.appendChild(m),
+        d.appendChild(u),
+        r.firstChild ? r.insertBefore(d, r.firstChild) : r.appendChild(d),
+        Spicetify.Player.isPlaying() ? m.play() : m.pause();
     } catch (e) {
       console.error("[CAT-JAM] Could not create cat-jam video element: ", e);
     }
