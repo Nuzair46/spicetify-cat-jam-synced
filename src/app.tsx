@@ -10,9 +10,13 @@ async function getPlaybackRate(audioData) {
         videoDefaultBPM = 135.48;
     }
 
-    if (audioData && audioData.track.tempo) {
-        let trackBPM = audioData.track.tempo; // BPM of the current track
-        const playbackRate = trackBPM / videoDefaultBPM; // Calculate playback rate
+    if (audioData && audioData?.track) {
+        let trackBPM = audioData?.track?.tempo  // BPM of the current track
+        // Calculate playback rate
+        let playbackRate = 1;
+        if (trackBPM) {
+            playbackRate = trackBPM / videoDefaultBPM;
+        }
 
         console.log("[CAT-JAM] Track BPM:", trackBPM)
         console.log("[CAT-JAM] Cat jam synchronized, playback rate set to:", playbackRate)
@@ -94,6 +98,36 @@ async function waitForElement(selector, maxAttempts = 50, interval = 100) {
     throw new Error(`Element ${selector} not found after ${maxAttempts} attempts.`); // Throw error if element not found within attempts
 }
 
+// Set the CSS text of the style element
+const rgbOverlayStyle = `
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    #catjam-rgb-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255, 0, 0, 0.5), rgba(0, 255, 0, 0.5), rgba(0, 0, 255, 0.5));
+        background-size: 200% 200%;
+        animation: gradient 5s ease infinite;
+        mix-blend-mode: screen;
+        pointer-events: none;
+        background-blend-mode: multiply;
+        z-index: 2;
+    }
+`;
+
 // Function that creates the WebM video and sets initial BPM and play state
 async function createWebMVideo() {
     try {
@@ -104,7 +138,7 @@ async function createWebMVideo() {
             leftLibraryVideoSize = 100; // Default size of the video on the left library
         }
         const bottomPlayerStyle = 'width: 65px; height: 65px;'; // Style for the bottom player video
-        let leftLibraryStyle = `width: ${leftLibraryVideoSize}%; max-width: 300px; height: auto; max-height: 100%; position: absolute; bottom: 0; pointer-events: none; z-index: 1;` // Style for the left library video
+        let leftLibraryStyle = `width: ${leftLibraryVideoSize}%; max-width: 300px; height: 100%; max-height: 229px; bottom: 0; pointer-events: none; z-index: 1; position: absolute;` // Style for the left library video
         let selectedPosition = settings.getFieldValue("catjam-webm-position"); // Get the selected position for the video
 
         let targetElementSelector = selectedPosition === 'Bottom (Player)' ? bottomPlayerClass : leftLibraryClass;
@@ -116,13 +150,32 @@ async function createWebMVideo() {
         if (existingVideo) {
             existingVideo.remove();
         }
-        
-        //
+        const existingVideoContainer = document.getElementById('catjam-webm-container');
+        if (existingVideoContainer) {
+            existingVideoContainer.remove();
+        }
+        const existingRGBOverlay = document.getElementById('catjam-rgb-overlay');
+        if (existingRGBOverlay) {
+            existingRGBOverlay.remove();
+        }
+
         let videoURL = String(settings.getFieldValue("catjam-webm-link"));
         
         if (!videoURL) {
             videoURL = "https://github.com/BlafKing/spicetify-cat-jam-synced/raw/main/src/resources/catjam.webm"
         }
+
+        // Create a container for the video element
+        const videoContainer = document.createElement('div');
+        videoContainer.setAttribute('id', 'catjam-webm-container');
+        videoContainer.setAttribute('style', elementStyles);
+
+        // Create rgb overlay
+        const styleElement = document.createElement('style');
+        styleElement.textContent = rgbOverlayStyle;
+        document.head.appendChild(styleElement);
+        const rgbOverlay = document.createElement('div');
+        rgbOverlay.setAttribute('id', 'catjam-rgb-overlay');
 
         // Create a new video element to be inserted
         const videoElement = document.createElement('video');
@@ -135,11 +188,16 @@ async function createWebMVideo() {
 
         audioData = await fetchAudioData(); // Fetch audio data
         videoElement.playbackRate = await getPlaybackRate(audioData); // Adjust playback rate based on the song's BPM
-        // Insert the video element into the target element in the DOM
+
+        // Add rgb overlay to the video element
+        videoContainer.appendChild(videoElement);
+        videoContainer.appendChild(rgbOverlay);
+
+        // Insert the video container into the target element in the DOM
         if (targetElement.firstChild) {
-            targetElement.insertBefore(videoElement, targetElement.firstChild);
+            targetElement.insertBefore(videoContainer, targetElement.firstChild);
         } else {
-            targetElement.appendChild(videoElement);
+            targetElement.appendChild(videoContainer);
         }
         // Control video playback based on whether Spotify is currently playing music
         if (Spicetify.Player.isPlaying()) {
